@@ -11,16 +11,23 @@ public class Catalog {
     //Item -> Prices
     private HashMap<String,Double> items;
 
+    private HashMap<String, Item> inventory;
+
+    private ArrayList<User> users = new ArrayList<>();
+    private HashMap<String, String> orders = new HashMap<>();
+
     public Catalog(String storeName){
         this.storeName = storeName;
         this.inventoryTotal = 0;
         this.items = new HashMap<>();
+        this.inventory = new HashMap<>();
     }
 
-    public Catalog(String storeName, HashMap<String,Double> items){
+    public Catalog(String storeName, HashMap<String,Double> items, HashMap<String, Item> inventory){
         this.storeName = storeName;
         this.items = items;
-        this.inventoryTotal = this.items.size(); //TODO: Talk more
+        this.inventoryTotal = this.items.size();
+        this.inventory = inventory;
     }
 
     public HashMap<String, Double> getItems(){
@@ -77,4 +84,21 @@ public class Catalog {
     public int getInventoryTotal() {
         return inventoryTotal;
     }
+
+
+    public boolean addNewInventoryItem(Item item){
+        if(!inventory.containsValue(item)){
+            inventory.put(item.getItemName(), item);
+            return true;
+        }
+        return false;
+    }
+
+    public void updatePriceOfInventoryItem(String itemName, Double price){
+        Item item = inventory.remove(itemName);
+        item.setPrice(price);
+        inventory.put(itemName, item);
+
+    }
+
 }
