@@ -9,7 +9,7 @@ public class ScheduleService {
         SchedulerDTO schedulerDTO = new SchedulerDTO();
 
         //add hasn't been written yet.
-        Boolean addedEvent = calendar.add(doctor, appt);
+        //Boolean addedEvent = calendar.add(doctor, appt);
         schedulerDTO.addAppointment(appt);
         schedulerDTO.setOfficeCode(123);
         schedulerDTO.setProviderName(doctor.toString());
